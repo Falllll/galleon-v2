@@ -10,7 +10,7 @@
                     {{ __('Register') }}
                 </header>
 
-                <form class="w-full px-6 space-y-6 sm:px-10 sm:space-y-8" method="POST"
+                <form class="w-full px-6 space-y-1 sm:px-10 sm:space-y-3" method="POST"
                     action="{{ route('register') }}">
                     @csrf
 
@@ -30,6 +30,21 @@
                     </div>
 
                     <div class="flex flex-wrap">
+                        <label for="user_name" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
+                            {{ __('User Name') }}:
+                        </label>
+
+                        <input id="user_name" type="text" class="form-input w-full @error('user_name')  border-red-500 @enderror"
+                            name="user_name" value="{{ old('user_name') }}" required autocomplete="user_name" autofocus>
+
+                        @error('user_name')
+                        <p class="text-red-500 text-xs italic mt-4">
+                            {{ $message }}
+                        </p>
+                        @enderror
+                    </div>
+
+                    <div class="flex flex-wrap">
                         <label for="email" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
                             {{ __('E-Mail Address') }}:
                         </label>
@@ -39,6 +54,36 @@
                             value="{{ old('email') }}" required autocomplete="email">
 
                         @error('email')
+                        <p class="text-red-500 text-xs italic mt-4">
+                            {{ $message }}
+                        </p>
+                        @enderror
+                    </div>
+
+                    <div class="flex flex-wrap">
+                    <label for="phone" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
+                            {{ __('Phone') }}:
+                        </label>
+
+                        <input id="phone" type="text" class="form-input w-full @error('phone')  border-red-500 @enderror"
+                            name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
+
+                        @error('phone')
+                        <p class="text-red-500 text-xs italic mt-4">
+                            {{ $message }}
+                        </p>
+                        @enderror
+                    </div>
+
+                    <div class="flex flex-wrap">
+                    <label for="address" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
+                            {{ __('Address') }}:
+                        </label>
+
+                        <input id="address" type="text" class="form-input w-full @error('address')  border-red-500 @enderror"
+                            name="address" value="{{ old('address') }}" required autocomplete="address" autofocus>
+
+                        @error('address')
                         <p class="text-red-500 text-xs italic mt-4">
                             {{ $message }}
                         </p>
