@@ -13,6 +13,36 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+
+Auth::routes();
+
+Route::group([
+    'prefix' => 'admin',
+    'namespace' => 'Admin',
+    'as' => 'admin.'
+], function () {
+    Route::group(['middleware' => ['role:admin', 'auth']], function () {
+        route::get('/', function () {
+            return view('admin.index');
+        })->name('index');
+    });
 });
+
+Route::group([
+    'prefix' => 'developer',
+    'namespace' => 'Developer',
+    'as' => 'developer.'
+], function () {
+    Route::group(['middleware' => ['role:developer', 'auth']], function () {
+        route::get('/', function () {
+            return view('developer.index');
+        })->name('index');
+    });
+});
+
+//Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
