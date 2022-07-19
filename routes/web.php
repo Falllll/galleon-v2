@@ -26,9 +26,7 @@ Route::group([
     'as' => 'admin.'
 ], function () {
     Route::group(['middleware' => ['role:admin', 'auth']], function () {
-        route::get('/', function () {
-            return view('admin.index');
-        })->name('index');
+        route::get('/', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('index');
     });
 });
 
@@ -38,9 +36,7 @@ Route::group([
     'as' => 'developer.'
 ], function () {
     Route::group(['middleware' => ['role:developer', 'auth']], function () {
-        route::get('/', function () {
-            return view('developer.index');
-        })->name('index');
+        route::get('/', [\App\Http\Controllers\Developer\DashboardController::class, 'index'])->name('index');
     });
 });
 
